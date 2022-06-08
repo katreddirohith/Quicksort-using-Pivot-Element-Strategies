@@ -1,0 +1,52 @@
+#include &lt;iostream&gt;
+using namespace std;
+int Partition(int arr[], int s, int e)
+{
+int pivot = arr[e];
+int pIndex = s;
+for (int i = s; i &lt; e; i++)
+{
+if (arr[i] &lt; pivot)
+{
+int temp = arr[i];
+
+arr[i] = arr[pIndex];
+arr[pIndex] = temp;
+pIndex++;
+}
+}
+int temp = arr[e];
+arr[e] = arr[pIndex];
+arr[pIndex] = temp;
+return pIndex;
+}
+void QuickSort(int arr[], int s, int e)
+{
+if (s &lt; e)
+{
+int p = Partition(arr, s, e);
+QuickSort(arr, s, (p - 1));
+QuickSort(arr, (p + 1), e);
+}
+}
+int main()
+{
+int size = 0;
+cout &lt;&lt; &quot;Enter Size of array: &quot; &lt;&lt; endl;
+cin &gt;&gt; size;
+int myarray[size];
+cout &lt;&lt; &quot;Enter &quot; &lt;&lt; size &lt;&lt; &quot; integers in any order: &quot; &lt;&lt; endl;
+for (int i = 0; i &lt; size; i++)
+{
+cin &gt;&gt; myarray[i];
+}
+cout &lt;&lt; endl;
+
+QuickSort(myarray, 0, (size - 1));
+cout &lt;&lt; &quot;Sorted&quot; &lt;&lt; endl;
+for (int i = 0; i &lt; size; i++)
+{
+cout &lt;&lt; myarray[i] &lt;&lt; &quot; &quot;;
+}
+return 0;
+}
